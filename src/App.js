@@ -1,14 +1,21 @@
 import { useState } from 'react';
-import './App.css';
-import Preview from './components/ui/Preview';
+import './App.scss';
+import Viewer from './components/ui/Viewer';
 
 function App() {
 
   const [viewData, setViewData] = useState(STATICVIEWDATA);
 
+  function onDataChange(moduleIndex, fieldName, value) {
+    let newData = [...viewData];
+    newData[moduleIndex].attributes[fieldName] = value;
+    setViewData(newData);
+  }
+
   return (
     <div className="App">
-      <Preview views={viewData}/>
+      <Viewer views={viewData} mode="view"/>
+      <Viewer views={viewData} mode="edit" onChange={onDataChange}/>
     </div>
   );
 }
@@ -36,13 +43,13 @@ const STATICVIEWDATA = [
   {
       "moduleType": "VImageWithPadding",
       "attributes": {
-          "padding": 0,
+          "padding": 50,
           "backgroundColor": {
-              "hex": "#000000"
+              "hex": "#00BB00"
           },
           "imageUrl": "https://firebasestorage.googleapis.com/v0/b/mulawl.appspot.com/o/c70f0c40-78b4-11ea-9167-f7c4afbaf99b%2F2020-12-21%2Fritz_app2_1500x%402x.gif?alt=media&token=df148b2e-18df-47e8-844f-9755c5aedade",
           "link": {
-              "payload": "123",
+              "payload": "124",
               "type": "category"
           }
       },

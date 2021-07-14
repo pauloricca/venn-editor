@@ -1,5 +1,7 @@
+import Editor from '../ui/Editor';
+
 function VTextBox(props) {
-    return (
+    if(props.mode==="view") return (
         <div
             className={'VTextBox'}
             style={{
@@ -11,6 +13,17 @@ function VTextBox(props) {
                 'padding': props.attributes.padding + 'px'
             }}
         >{props.attributes.bodyText}</div>
+    );
+
+    else return (
+        <Editor 
+            values={props.attributes} 
+            fields={[
+                { "name": "fontSize", "type": "text", "default": "one value" },
+                { "name": "dois", "type": "text", "default": "another value" },
+            ]}
+            onChange={props.onChange}
+        />
     );
 }
 
