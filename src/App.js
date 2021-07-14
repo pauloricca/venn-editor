@@ -8,7 +8,7 @@ function App() {
 
   function onDataChange(moduleIndex, fieldName, value) {
     let newData = [...viewData];
-    // support for second level attributes
+    // support for second level attributes e.g. link.type
     if(fieldName.indexOf('.') !== -1)
     {
         const fieldNameParts = fieldName.split('.');

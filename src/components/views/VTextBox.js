@@ -3,7 +3,7 @@ import ModuleEditor from '../ui/ModuleEditor';
 function VTextBox(props) {
     if(props.mode==="view") return (
         <div
-            className={'VTextBox'}
+            className='VTextBox'
             style={{
                 'backgroundColor': props.attributes.backgroundColor.hex,
                 'textAlign': props.attributes.textAlignment,

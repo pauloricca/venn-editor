@@ -14,9 +14,3 @@ function ColorField(props) {
 }
 
 export default ColorField;
-
-/*
-<input type="text"
-            value={props.value} 
-            onChange={event => props.onChange( event.target.value )}
-        />*/

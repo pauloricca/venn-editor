@@ -4,7 +4,7 @@ import './VImageWithPadding.scss';
 function VImageWithPadding(props) {
     if(props.mode==="view") return (
         <div 
-            className={'VImageWithPadding'}
+            className='VImageWithPadding'
             style={{
                 'backgroundColor': props.attributes.backgroundColor.hex,
                 'padding':  props.attributes.padding + 'px'
@@ -13,6 +13,7 @@ function VImageWithPadding(props) {
             <a 
                 href={`/${props.attributes.link.type}/${props.attributes.link.payload}`}
                 target="_blank"
+                rel="noreferrer"
             >
                 <img
                     src={props.attributes.imageUrl}
