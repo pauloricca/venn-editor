@@ -7,7 +7,9 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "react": "^17.0.2",
+    "react-color": "^2.19.3",
     "react-dom": "^17.0.2",
+    "react-input-colorpicker": "^1.0.13",
     "react-scripts": "4.0.3",
     "sass": "^1.35.2",
     "web-vitals": "^1.1.2"
@@ -34,6 +36,23 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/plugin-syntax-jsx": "^7.14.5",
+    "@babel/plugin-transform-react-jsx": "^7.10.4",
+    "@babel/plugin-transform-react-jsx-self": "^7.10.4",
+    "@babel/preset-env": "^7.14.7",
+    "@babel/preset-react": "^7.14.5"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react",
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-transform-react-jsx"
     ]
   }
 }

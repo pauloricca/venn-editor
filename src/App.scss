@@ -1,9 +1,15 @@
 .App {
     display: flex;
+    grid-gap: 30px;
     gap: 30px;
+    height: 100vh;
+    padding: 30px;
 
     .Viewer {
         flex-basis: 0;
         flex-grow: 1;
+        max-width: 50%;
+        overflow-y: scroll;
+        height: 100%;
     }
 }

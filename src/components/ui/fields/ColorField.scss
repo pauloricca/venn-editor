@@ -1,0 +1,20 @@
+.ColorField {
+    position: relative;
+    width: 220px;
+
+    .color-preview {
+        height: 25px;
+        border: 1px solid #bbbbbb;
+        border-radius: 5px;
+        box-shadow: inset 2px 2px 2px 0px rgb(0 0 0 / 10%);
+    }
+
+    .sketch-picker {
+        position: absolute;
+        z-index: 10;
+    }
+
+    &:not(:hover) .sketch-picker {
+        display: none;
+    }
+}

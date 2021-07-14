@@ -8,7 +8,13 @@ function App() {
 
   function onDataChange(moduleIndex, fieldName, value) {
     let newData = [...viewData];
-    newData[moduleIndex].attributes[fieldName] = value;
+    // support for second level attributes
+    if(fieldName.indexOf('.') !== -1)
+    {
+        const fieldNameParts = fieldName.split('.');
+        newData[moduleIndex].attributes[fieldNameParts[0]][fieldNameParts[1]] = value;
+    }
+    else newData[moduleIndex].attributes[fieldName] = value;
     setViewData(newData);
   }
 

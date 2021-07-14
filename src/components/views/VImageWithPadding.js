@@ -1,3 +1,4 @@
+import ModuleEditor from '../ui/ModuleEditor';
 import './VImageWithPadding.scss';
 
 function VImageWithPadding(props) {
@@ -9,7 +10,10 @@ function VImageWithPadding(props) {
                 'padding':  props.attributes.padding + 'px'
             }}
         >
-            <a href={`/${props.attributes.link.type}/${props.attributes.link.payload}`}>
+            <a 
+                href={`/${props.attributes.link.type}/${props.attributes.link.payload}`}
+                target="_blank"
+            >
                 <img
                     src={props.attributes.imageUrl}
                     alt=""
@@ -19,26 +23,19 @@ function VImageWithPadding(props) {
     );
 
     else return (
-        <div>Editing</div>
+        <ModuleEditor 
+            title="Image"
+            values={props.attributes} 
+            fields={[
+                { "name": "link.type", "label": "Link Type", "type": "select", "options": ["category", "product"], "default": "category" },
+                { "name": "link.payload", "label": "Link Payload", "type": "text", "default": "" },
+                { "name": "padding", "label": "Padding", "type": "number", "default": 0, "min": 0, "max": 100 },
+                { "name": "backgroundColor", "label": "Background Color", "type": "color", "default": "#FFFFFF" },
+                { "name": "imageUrl", "label": "Image URL", "type": "text", "default": "" }
+            ]}
+            onChange={props.onChange}
+        />
     );
-  }
-  
-  export default VImageWithPadding;
-
-/*
-  {
-    "moduleType": "VImageWithPadding",
-    "attributes": {
-        "padding": 0,
-        "backgroundColor": {
-            "hex": "#000000"
-        },
-        "imageUrl": "https://firebasestorage.googleapis.com/v0/b/mulawl.appspot.com/o/c70f0c40-78b4-11ea-9167-f7c4afbaf99b%2F2020-12-21%2Fritz_app2_1500x%402x.gif?alt=media&token=df148b2e-18df-47e8-844f-9755c5aedade",
-        "link": {
-            "payload": "123",
-            "type": "category"
-        }
-    },
-    "heightMultiplier": 1.25
 }
-*/
+  
+export default VImageWithPadding;

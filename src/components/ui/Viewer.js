@@ -6,7 +6,7 @@ function Viewer(props) {
     const views = props.views.map( (view, vi) => {
         switch(view.moduleType) {
             case 'VTextBox': return <VTextBox key={vi} attributes={view.attributes} mode={props.mode} onChange={(fieldName, value) => props.onChange(vi, fieldName, value)}/>;
-            case 'VImageWithPadding': return <VImageWithPadding key={vi} attributes={view.attributes} mode={props.mode}/>;
+            case 'VImageWithPadding': return <VImageWithPadding key={vi} attributes={view.attributes} mode={props.mode} onChange={(fieldName, value) => props.onChange(vi, fieldName, value)}/>;
             default: return null;
         };
     });

@@ -1,4 +1,4 @@
-import Editor from '../ui/Editor';
+import ModuleEditor from '../ui/ModuleEditor';
 
 function VTextBox(props) {
     if(props.mode==="view") return (
@@ -16,11 +16,17 @@ function VTextBox(props) {
     );
 
     else return (
-        <Editor 
+        <ModuleEditor 
+            title="Text"
             values={props.attributes} 
             fields={[
-                { "name": "fontSize", "type": "text", "default": "one value" },
-                { "name": "dois", "type": "text", "default": "another value" },
+                { "name": "bodyText", "label": "Text", "type": "text", "default": "" },
+                { "name": "fontSize", "label": "Font Size", "type": "number", "default": 13, "min": 5, "max": 50 },
+                { "name": "padding", "label": "Padding", "type": "number", "default": 0, "min": 0, "max": 100 },
+                { "name": "textAlignment", "label": "Text Alignment", "type": "select", "options": ["left", "center", "right"], "default": "left" },
+                { "name": "capitalised", "label": "Capitalize", "type": "boolean", "default": false },
+                { "name": "fontColor", "label": "Text Color", "type": "color", "default": "#000000" },
+                { "name": "backgroundColor", "label": "Background Color", "type": "color", "default": "#FFFFFF" }
             ]}
             onChange={props.onChange}
         />
