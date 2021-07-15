@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.scss';
 import Viewer from './components/ui/Viewer';
+import arrayMove from 'array-move';
 
 function App() {
 
@@ -18,6 +19,28 @@ function App() {
     setViewData(newData);
   }
 
+  /*onSortEnd = ({oldIndex, newIndex}) => {
+      this.setState(({items}) => ({
+          items: arrayMove(items, oldIndex, newIndex),
+      }));
+  };*/
+
+  function onSort({oldIndex, newIndex})
+  {
+    let newData = [...viewData];
+    newData = arrayMove(newData, oldIndex, newIndex);
+    setViewData(newData);
+  }
+
+  function onViewRemove(moduleIndex) {
+    const confirmed = window.confirm("Are you sure you want to remove this element?");
+    if(confirmed) {
+      let newData = [...viewData];
+      newData.splice(moduleIndex, 1);
+      setViewData(newData);
+    }
+  }
+
   function onAddNew(moduleType)
   {
     let newData = [...viewData, {"moduleType": moduleType, "attributes": {}}];
@@ -26,8 +49,8 @@ function App() {
 
   return (
     <div className="App">
-      <Viewer views={viewData} mode="view"/>
-      <Viewer views={viewData} mode="edit" onChange={onDataChange} onAddNew={onAddNew}/>
+      <Viewer views={viewData} mode="view" onSort={onSort}/>
+      <Viewer views={viewData} mode="edit" onSort={onSort} onChange={onDataChange} onAddNew={onAddNew} onRemove={onViewRemove}/>
     </div>
   );
 }

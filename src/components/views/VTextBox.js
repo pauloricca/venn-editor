@@ -8,32 +8,27 @@ function VTextBox(props) {
         { "name": "padding", "label": "Padding", "type": "number", "default": 0, "min": 0, "max": 100 },
         { "name": "textAlignment", "label": "Text Alignment", "type": "select", "options": ["left", "center", "right"], "default": "left" },
         { "name": "capitalised", "label": "Capitalize", "type": "boolean", "default": false },
-        { "name": "fontColor", "label": "Text Color", "type": "color", "default": "#000000" },
-        { "name": "backgroundColor", "label": "Background Color", "type": "color", "default": "#FFFFFF" }
+        { "name": "fontColor", "label": "Text Color", "type": "color", "default": {"hex": "#000000"} },
+        { "name": "backgroundColor", "label": "Background Color", "type": "color", "default": {"hex": "#FFFFFF"} }
     ];
+
+    const atts = props.attributes;
 
     if(props.mode==="view") return (
         <div
             className='VTextBox'
             style={{
-                'backgroundColor': props.attributes.backgroundColor ? props.attributes.backgroundColor.hex : schema.find(f=>f.name==='backgroundColor').default,
-                'textAlign': props.attributes.textAlignment,
-                'color': props.attributes.fontColor ? props.attributes.fontColor.hex : schema.find(f=>f.name==='fontColor').default,
-                'textTransform': props.attributes.capitalised ? 'uppercase' : 'none',
-                'fontSize': props.attributes.fontSize + 'px',
-                'padding': props.attributes.padding + 'px'
+                'backgroundColor': atts.backgroundColor ? atts.backgroundColor.hex : schema.find(f=>f.name==='backgroundColor').default,
+                'textAlign': atts.textAlignment,
+                'color': atts.fontColor ? atts.fontColor.hex : schema.find(f=>f.name==='fontColor').default,
+                'textTransform': atts.capitalised ? 'uppercase' : 'none',
+                'fontSize': atts.fontSize + 'px',
+                'padding': atts.padding + 'px'
             }}
-        >{props.attributes.bodyText ? props.attributes.bodyText : schema.find(f=>f.name==='bodyText').default}</div>
+        >{atts.bodyText ? atts.bodyText : schema.find(f=>f.name==='bodyText').default}</div>
     );
 
-    else return (
-        <ModuleEditor 
-            title="Text"
-            values={props.attributes} 
-            fields={schema}
-            onChange={props.onChange}
-        />
-    );
+    else return <ModuleEditor title="Text" values={atts} fields={schema} onChange={props.onChange} onRemove={props.onRemove}/>;
 }
 
 export default VTextBox;

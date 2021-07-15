@@ -6,6 +6,7 @@
     }
 
     button, .add-new-module {
+        appearance: none;
         background-color: white;
         border: 1px solid #bbbbbb;
         font-size: 1em;
@@ -29,5 +30,10 @@
 
     input[type="checkbox"] {
         width: unset;
+    }
+
+    .ui-columns {
+        display: flex;
+        gap: 10px;
     }
 }

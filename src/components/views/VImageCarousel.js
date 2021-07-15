@@ -4,7 +4,14 @@ var Carousel = require('react-responsive-carousel').Carousel;
 
 function VImageCarousel(props) {
 
-    const images = props.attributes.images ? props.attributes.images.map( (url, i) => (
+    const schema = [
+        { "name": "padding", "label": "Padding", "type": "number", "default": 0, "min": 0, "max": 100 },
+        { "name": "images", "label": "Image URLs", "type": "multitext", "default": [""] }
+    ];
+
+    const atts = props.attributes;
+
+    const images = atts.images ? atts.images.map( (url, i) => (
         <div key={i}>
             <img src={url} alt=""/>
         </div>
@@ -14,7 +21,7 @@ function VImageCarousel(props) {
         <div 
             className='VImageCarousel'
             style={{
-                'padding':  props.attributes.padding + 'px'
+                'padding':  atts.padding + 'px'
             }}
         >
             <Carousel 
@@ -29,17 +36,7 @@ function VImageCarousel(props) {
         </div>
     );
 
-    else return (
-        <ModuleEditor 
-            title="Carousel"
-            values={props.attributes} 
-            fields={[
-                { "name": "padding", "label": "Padding", "type": "number", "default": 0, "min": 0, "max": 100 },
-                { "name": "images", "label": "Image URLs", "type": "multitext", "default": [""] }
-            ]}
-            onChange={props.onChange}
-        />
-    );
+    else return <ModuleEditor title="Carousel" values={atts} fields={schema} onChange={props.onChange} onRemove={props.onRemove}/>;
 }
   
 export default VImageCarousel;
