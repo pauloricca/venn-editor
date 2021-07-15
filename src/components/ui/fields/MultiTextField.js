@@ -1,29 +1,24 @@
 function MultiTextField(props) {
 
     let values = [...props.value];
+    
+    // add an empty field at the end to allow writing new lines
     values.push('');
 
     function onChange(index, value) {
         values[index] = value;
-        console.log('before', values);
-        while (values[values.length-1]==='') values.pop();
-        console.log('after', values);
+        // clear the empty lines at the end
+        while (!values[values.length-1]) values.pop();
         props.onChange(values);
     }
     
-    const fields = values.map( (value, vi) => (
+    return values.map( (value, vi) => (
         <input type="text"
             key={vi}
             value={value} 
             onChange={event => onChange( vi, event.target.value)}
         />
     ));
-
-    return (
-        <div>
-            {fields}
-        </div>
-    );
 }
 
 export default MultiTextField;

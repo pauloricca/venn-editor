@@ -6,12 +6,12 @@ function VImageWithPadding(props) {
         <div 
             className='VImageWithPadding'
             style={{
-                'backgroundColor': props.attributes.backgroundColor.hex,
+                'backgroundColor': props.attributes.backgroundColor ? props.attributes.backgroundColor.hex : '',
                 'padding':  props.attributes.padding + 'px'
             }}
         >
             <a 
-                href={`/${props.attributes.link.type}/${props.attributes.link.payload}`}
+                href={`/${props.attributes.link ? props.attributes.link.type : ''}/${props.attributes.link ? props.attributes.link.payload : ''}`}
                 target="_blank"
                 rel="noreferrer"
             >

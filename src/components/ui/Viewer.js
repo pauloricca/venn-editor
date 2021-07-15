@@ -3,6 +3,12 @@ import VImageWithPadding from "../views/VImageWithPadding";
 import VImageCarousel from "../views/VImageCarousel";
 
 function Viewer(props) {
+
+    function addNew(event)
+    {
+        props.onAddNew(event.target.value);
+        event.target.value = "";
+    }
     
     const views = props.views.map( (view, vi) => {
         const onChange = (fieldName, value) => props.onChange(vi, fieldName, value);
@@ -15,7 +21,20 @@ function Viewer(props) {
     });
 
     return (
-        <div className={'Viewer ' + props.mode}>{views}</div>
+        <div className={'Viewer ' + props.mode}>
+            {views}
+            {props.mode==="edit"?
+                <div>
+                    <select onChange={addNew}>
+                        <option value="" selected>Add New</option>
+                        <option value="VTextBox">Text</option>
+                        <option value="VImageWithPadding">Image</option>
+                        <option value="VImageCarousel">Carousel</option>
+                    </select>
+                    <button>Save</button>
+                </div>
+            :null}
+        </div>
     );
   }
   

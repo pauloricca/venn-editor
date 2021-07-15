@@ -12,4 +12,36 @@
         overflow-y: scroll;
         height: 100%;
     }
+
+    label, input, select, button {
+        display: block;
+        margin: 5px 0px;
+        width: 100%;
+    }
+
+    button {
+        background-color: white;
+        border: 1px solid #bbbbbb;
+        font-size: 1em;
+        border-radius: 5px;
+        padding: 10px 10px;
+        box-shadow: 2px 2px 2px 0px rgb(0 0 0 / 10%), inset -2px -2px 2px 0px rgb(0 0 0 / 10%);
+        cursor: pointer;
+    }
+
+    button:active {
+        background-color: rgb(250, 250, 250);
+        box-shadow: 2px 2px 2px 0px rgb(0 0 0 / 10%), inset 0px 0px 4px 0px rgb(0 0 0 / 20%);
+    }
+
+    input, select {
+        border: 1px solid #bbbbbb;
+        border-radius: 5px;
+        padding: 5px 10px;
+        box-shadow: inset 2px 2px 2px 0px rgb(0 0 0 / 10%);
+    }
+
+    input[type="checkbox"] {
+        width: unset;
+    }
 }

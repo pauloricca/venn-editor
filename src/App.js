@@ -18,10 +18,16 @@ function App() {
     setViewData(newData);
   }
 
+  function onAddNew(moduleType)
+  {
+    let newData = [...viewData, {"moduleType": moduleType, "attributes": {}}];
+    setViewData(newData);
+  }
+
   return (
     <div className="App">
       <Viewer views={viewData} mode="view"/>
-      <Viewer views={viewData} mode="edit" onChange={onDataChange}/>
+      <Viewer views={viewData} mode="edit" onChange={onDataChange} onAddNew={onAddNew}/>
     </div>
   );
 }

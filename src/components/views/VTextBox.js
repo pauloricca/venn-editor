@@ -5,9 +5,9 @@ function VTextBox(props) {
         <div
             className='VTextBox'
             style={{
-                'backgroundColor': props.attributes.backgroundColor.hex,
+                'backgroundColor': props.attributes.backgroundColor ? props.attributes.backgroundColor.hex : '',
                 'textAlign': props.attributes.textAlignment,
-                'color': props.attributes.fontColor.hex,
+                'color': props.attributes.fontColor ? props.attributes.fontColor.hex : '',
                 'textTransform': props.attributes.capitalised ? 'uppercase' : 'none',
                 'fontSize': props.attributes.fontSize + 'px',
                 'padding': props.attributes.padding + 'px'
