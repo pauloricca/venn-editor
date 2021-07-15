@@ -1,8 +1,14 @@
 import ModuleEditor from '../ui/ModuleEditor';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+var Carousel = require('react-responsive-carousel').Carousel;
 
 function VImageCarousel(props) {
 
-    const images = props.attributes.images.map( (url, i) => <img src={url} alt=""/> );
+    const images = props.attributes.images.map( (url, i) => (
+        <div key={i}>
+            <img src={url} alt=""/>
+        </div>
+    ));
 
     if(props.mode==="view") return (
         <div 
@@ -11,7 +17,15 @@ function VImageCarousel(props) {
                 'padding':  props.attributes.padding + 'px'
             }}
         >
-            {images}
+            <Carousel 
+                showArrows={true}
+                autoPlay={true}
+                showThumbs={false}
+                infiniteLoop={true}
+                emulateTouch={true}
+            >
+                {images}
+            </Carousel>
         </div>
     );
 

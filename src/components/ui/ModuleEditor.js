@@ -4,6 +4,7 @@ import ColorField from './fields/ColorField';
 import NumberField from './fields/NumberField';
 import SelectField from './fields/SelectField';
 import TextField from './fields/TextField';
+import MultiTextField from './fields/MultiTextField';
 import './ModuleEditor.scss';
 
 function ModuleEditor(props) {
@@ -35,6 +36,7 @@ function ModuleEditor(props) {
             case 'number': input = <NumberField value={value} onChange={onChange} max={field.max} min={field.min}/>; break;
             case 'select': input = <SelectField options={field.options} value={value} onChange={onChange}/>; break;
             case 'color': input = <ColorField value={value} onChange={onChange}/>; break;
+            case 'multitext': input = <MultiTextField value={value} onChange={onChange}/>; break;
             default: return null;
         };
 
