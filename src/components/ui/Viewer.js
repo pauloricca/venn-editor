@@ -1,6 +1,7 @@
 import VTextBox from "../views/VTextBox";
 import VImageWithPadding from "../views/VImageWithPadding";
 import VImageCarousel from "../views/VImageCarousel";
+import './Viewer.scss';
 
 function Viewer(props) {
 
