@@ -1,8 +1,6 @@
 import VTextBox from "../views/VTextBox";
 import VImageWithPadding from "../views/VImageWithPadding";
 import VImageCarousel from "../views/VImageCarousel";
-import {sortableContainer, sortableElement} from 'react-sortable-hoc';
-import arrayMove from 'array-move';
 import './Viewer.scss';
 
 
