@@ -4,11 +4,11 @@ var Carousel = require('react-responsive-carousel').Carousel;
 
 function VImageCarousel(props) {
 
-    const images = props.attributes.images.map( (url, i) => (
+    const images = props.attributes.images ? props.attributes.images.map( (url, i) => (
         <div key={i}>
             <img src={url} alt=""/>
         </div>
-    ));
+    )) : [];
 
     if(props.mode==="view") return (
         <div 
@@ -25,7 +25,7 @@ function VImageCarousel(props) {
                 emulateTouch={true}
             >
                 {images}
-            </Carousel>
+            </Carousel> 
         </div>
     );
 

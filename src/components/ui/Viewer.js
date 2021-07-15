@@ -26,8 +26,8 @@ function Viewer(props) {
             {views}
             {props.mode==="edit"?
                 <div>
-                    <select onChange={addNew}>
-                        <option value="" selected>Add New</option>
+                    <select onChange={addNew} className="add-new-module">
+                        <option value="" selected>Add New...</option>
                         <option value="VTextBox">Text</option>
                         <option value="VImageWithPadding">Image</option>
                         <option value="VImageCarousel">Carousel</option>

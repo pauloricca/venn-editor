@@ -22,7 +22,7 @@ function ModuleEditor(props) {
             // support for second level field names, e.g. link.type
             field.name.indexOf('.') !== -1 ?
             (
-                props.values[splitFieldName[0]][splitFieldName[1]] ? 
+                props.values[splitFieldName[0]] && props.values[splitFieldName[0]][splitFieldName[1]] ? 
                 props.values[splitFieldName[0]][splitFieldName[1]] 
                 : field.default
             )
