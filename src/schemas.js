@@ -36,7 +36,7 @@ const schemas = {
         "friendlyName": "Carousel",
         "fields": [
             { "name": "padding", "label": "Padding", "type": "number", "default": 0, "min": 0, "max": 100 },
-            { "name": "images", "label": "Image URLs", "type": "multitext", "default": [""] }
+            { "name": "images", "label": "Image URLs", "type": "multitext", "default": [] }
         ]
     }
 }
