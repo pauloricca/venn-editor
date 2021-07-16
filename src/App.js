@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.scss';
 import Viewer from './components/ui/Viewer';
-import arrayMove from 'array-move';
+
+const API_AUTHORISATION_CODE = '2133';
 
 function App() {
 
-  const [viewData, setViewData] = useState(STATICVIEWDATA);
+  const [viewData, setViewData] = useState([]); //STATICVIEWDATA
+  const [dataLoaded, setDataLoaded] = useState(false);
 
   function onDataChange(moduleIndex, fieldName, value) {
     let newData = [...viewData];
@@ -19,19 +21,6 @@ function App() {
     setViewData(newData);
   }
 
-  /*onSortEnd = ({oldIndex, newIndex}) => {
-      this.setState(({items}) => ({
-          items: arrayMove(items, oldIndex, newIndex),
-      }));
-  };*/
-
-  function onSort({oldIndex, newIndex})
-  {
-    let newData = [...viewData];
-    newData = arrayMove(newData, oldIndex, newIndex);
-    setViewData(newData);
-  }
-
   function onViewRemove(moduleIndex) {
     const confirmed = window.confirm("Are you sure you want to remove this element?");
     if(confirmed) {
@@ -41,16 +30,68 @@ function App() {
     }
   }
 
-  function onAddNew(moduleType)
-  {
+  function onAddNew(moduleType) {
     let newData = [...viewData, {"moduleType": moduleType, "attributes": {}}];
     setViewData(newData);
   }
 
+  function onSave() {
+    fetch('/json', { 
+        method: 'POST',
+        headers: new Headers({
+          'Authorization': API_AUTHORISATION_CODE,
+          'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify(postProcessData(viewData)) 
+      })
+      .then(res => {
+        if(res.ok) {
+          alert('Data saved');
+        }
+        else
+        {
+          alert('Error saving data');
+        }
+      })
+  }
+
+  function preProcessData(data) {
+    // TODO: Add ids to each view so we can use them as keys
+
+    setViewData(data);
+  }
+
+  function postProcessData(data) {
+    // TODO: add the image proportions
+    return data;
+  }
+
+  // Load Data
+  useEffect( () => {
+    if(!dataLoaded) fetch('/json', { 
+        headers: new Headers({
+          'Authorization': API_AUTHORISATION_CODE
+        }) 
+      })
+      .then(res => {
+        if(res.ok) {
+          try {
+            return res.json();
+          } catch(err) {
+            console.log('error parsing api response', err);
+          }
+        }
+      })
+      .then( 
+        jsonRes => { preProcessData(jsonRes); setDataLoaded(true); }
+      );
+
+  });
+
   return (
     <div className="App">
-      <Viewer views={viewData} mode="view" onSort={onSort}/>
-      <Viewer views={viewData} mode="edit" onSort={onSort} onChange={onDataChange} onAddNew={onAddNew} onRemove={onViewRemove}/>
+      <Viewer views={viewData} onNewData={setViewData} mode="view" />
+      <Viewer views={viewData} onNewData={setViewData} mode="edit" onChange={onDataChange} onAddNew={onAddNew} onRemove={onViewRemove} onSave={onSave}/>
     </div>
   );
 }
