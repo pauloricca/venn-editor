@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import './App.scss';
 import Viewer from './components/ui/Viewer';
-import schemas from './schemas';
+import schemas from './components/views/Schemas';
 import dummyData from './dummydata';
 import Editor from './components/ui/Editor';
+import './App.scss';
 
 const API_AUTHORISATION_CODE = '2133';
 const USE_DUMMY_DATA = false;
@@ -14,6 +14,7 @@ function App() {
   const [viewData, setViewData] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
 
+  // when a certain field value changes
   function onDataChange(moduleIndex, fieldName, value) {
     let newData = [...viewData];
     // support for second level attributes e.g. link.type
@@ -26,6 +27,7 @@ function App() {
     setViewData(newData);
   }
 
+  // Removing a view
   function onViewRemove(moduleIndex) {
     const confirmed = window.confirm("Are you sure you want to remove this element?");
     if(confirmed) {
@@ -35,20 +37,23 @@ function App() {
     }
   }
 
+  // Add new view
   function onAddNew(moduleType) {
     let newData = [...viewData, {"moduleType": moduleType, "attributes": {}}];
     setViewData(newData);
   }
 
   // Save data
-  function onSave() {
+  async function onSave() {
+    const processedData = await postProcessData(viewData);
+    const dataToSave = JSON.stringify(processedData);
     fetch('/json', { 
         method: 'POST',
         headers: new Headers({
           'Authorization': API_AUTHORISATION_CODE,
           'Content-Type': 'application/json'
         }),
-        body: JSON.stringify(postProcessData(viewData)) 
+        body: dataToSave
       })
       .then(res => {
         if(res.ok) {
@@ -61,23 +66,27 @@ function App() {
       })
   }
 
+  // Prepares data for using in the editor
   function preProcessData(data) {
     // Add ids to be used as keys on lists
     data.forEach((item) => item.id = uuidv4());
     return data;
   }
 
-  function postProcessData(data) {
+  // prepares data for upload
+  async function postProcessData(data) {
     // Remove ids
     let dataCopy = JSON.parse(JSON.stringify(data))
-    dataCopy.forEach((item) => {
+    for(const item of dataCopy) {
+      // remove editor-related vars
       delete item.id;
       delete item.selected;
       delete item.chosen;
+      // check if any post processing needs to be done
       if(schemas[item.moduleType].postProcess) {
-        schemas[item.moduleType].postProcess(item);
+        await schemas[item.moduleType].postProcess(item);
       }
-    });
+    }
     return dataCopy;
   }
 
@@ -117,7 +126,8 @@ function App() {
         <Viewer views={viewData} onNewData={setViewData} />
         <Editor views={viewData} schemas={schemas} onNewData={setViewData} onChange={onDataChange} onAddNew={onAddNew} onRemove={onViewRemove} onSave={onSave}/>
     </div>
-  ); else return null;
+  );
+  else return null;
 }
 
 export default App;
