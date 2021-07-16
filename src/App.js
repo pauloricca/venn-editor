@@ -69,7 +69,8 @@ function App() {
 
   function postProcessData(data) {
     // Remove ids
-    data.forEach((item) => {
+    let dataCopy = JSON.parse(JSON.stringify(data))
+    dataCopy.forEach((item) => {
       delete item.id;
       delete item.selected;
       delete item.chosen;
@@ -77,7 +78,7 @@ function App() {
         schemas[item.moduleType].postProcess(item);
       }
     });
-    return data;
+    return dataCopy;
   }
 
   // Load Data
