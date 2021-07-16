@@ -9,6 +9,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  max-width: 1000px;
+  margin: auto;
+}
+
 * {
   box-sizing: border-box;
   outline: none;
