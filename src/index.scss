@@ -12,6 +12,18 @@ body {
   margin: auto;
 }
 
+@media (max-height: 760px) {
+  #root {
+    max-width: 800px;
+  }
+}
+
+@media (max-height: 680px) {
+  #root {
+    max-width: 730px;
+  }
+}
+
 * {
   box-sizing: border-box;
   outline: none;
