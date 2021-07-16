@@ -1,11 +1,11 @@
-function SelectField({options, value, onChange}) {
-    const optionElements = options.map( (option, oi) => <option key={option}>{option}</option> );
+function SelectField({props}) {
+    const options = props.options.map( (option, oi) => <option key={option}>{option}</option> );
     return (
         <select
-            value={value}
-            onChange={event => onChange( event.target.value ) }
+            value={props.value}
+            onChange={event => props.onChange( event.target.value ) }
         >
-            {optionElements}
+            {options}
         </select>
     );
 }

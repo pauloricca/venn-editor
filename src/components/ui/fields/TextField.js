@@ -1,10 +1,10 @@
-function TextField({value, onChange}) {
+function TextField(props) {
     return (
         <input 
             type="text"
             data-testid="textfield"
-            value={value} 
-            onChange={event => onChange( event.target.value )}
+            value={props.value} 
+            onChange={event => props.onChange( event.target.value )}
         />
     );
 }
