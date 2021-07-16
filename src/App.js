@@ -127,7 +127,7 @@ function App() {
         <Editor views={viewData} schemas={schemas} onNewData={setViewData} onChange={onDataChange} onAddNew={onAddNew} onRemove={onViewRemove} onSave={onSave}/>
     </div>
   );
-  else return null;
+  else return <div className="loading">Loading...</div>;
 }
 
 export default App;
