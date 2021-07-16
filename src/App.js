@@ -64,12 +64,19 @@ function App() {
   function preProcessData(data) {
     // Add ids to be used as keys on lists
     data.forEach((item) => item.id = uuidv4());
-    setViewData(data);
+    return data;
   }
 
   function postProcessData(data) {
     // Remove ids
-    data.forEach((item) => delete item.id);
+    data.forEach((item) => {
+      delete item.id;
+      delete item.selected;
+      delete item.chosen;
+      if(schemas[item.moduleType].postProcess) {
+        schemas[item.moduleType].postProcess(item);
+      }
+    });
     return data;
   }
 
@@ -77,7 +84,7 @@ function App() {
   useEffect( () => {
     if(!dataLoaded) {
       if(USE_DUMMY_DATA) {
-        preProcessData(dummyData); 
+        setViewData(preProcessData(dummyData)); 
         setDataLoaded(true); 
       } else {
         fetch('/json', { 
@@ -96,7 +103,7 @@ function App() {
         })
         .then( 
           jsonRes => { 
-            preProcessData(jsonRes); 
+            setViewData(preProcessData(jsonRes)); 
             setDataLoaded(true); 
           }
         );

@@ -1,3 +1,5 @@
+//import reactImageSize from 'react-image-size';
+
 const schemas = {
     "VTextBox": {
         "friendlyName": "Text",
@@ -19,7 +21,16 @@ const schemas = {
             { "name": "padding", "label": "Padding", "type": "number", "default": 0, "min": 0, "max": 100 },
             { "name": "backgroundColor", "label": "Background Color", "type": "color", "default": {"hex": "#FFFFFF"} },
             { "name": "imageUrl", "label": "Image URL", "type": "text", "default": "" }
-        ]
+        ],
+        "postProcess": (viewData) => {
+            /*try {
+                const { width, height } = await reactImageSize(viewData.attributes.imageUrl);
+                console.log(width, height);
+                viewData.heightMultiplier = height/width;
+            } catch (err) {
+                console.log("error getting image sizes");
+            }*/
+        }
     },
     "VImageCarousel": {
         "friendlyName": "Carousel",
