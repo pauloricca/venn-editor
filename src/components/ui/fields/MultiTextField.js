@@ -8,7 +8,7 @@ function MultiTextField(props) {
     function onChange(index, value) {
         values[index] = value;
         // clear the empty lines at the end
-        while (!values[values.length-1]) values.pop();
+        while (values.length > 1 && !values[values.length-1]) values.pop();
         props.onChange(values);
     }
     
