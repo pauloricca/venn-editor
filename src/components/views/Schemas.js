@@ -1,6 +1,6 @@
-import VTextBoxSchema from './VTextBox.schema';
-import VImageCarouselSchema from './VImageCarousel.schema';
-import VImageWithPaddingSchema from './VImageWithPadding.schema';
+import VTextBoxSchema from './VTextBox/VTextBox.schema';
+import VImageCarouselSchema from './VImageCarousel/VImageCarousel.schema';
+import VImageWithPaddingSchema from './VImageWithPadding/VImageWithPadding.schema';
 
 const schemas = {
     "VTextBox": VTextBoxSchema,
