@@ -63,6 +63,7 @@ function App() {
 
   function postProcessData(data) {
     // TODO: add the image proportions
+
     return data;
   }
 
@@ -98,7 +99,7 @@ function App() {
 
 export default App;
 
-
+/*
 const STATICVIEWDATA = [
   {
       "moduleType": "VTextBox",
@@ -144,3 +145,4 @@ const STATICVIEWDATA = [
       "heightMultiplier": 1.25
   }
 ];
+*/

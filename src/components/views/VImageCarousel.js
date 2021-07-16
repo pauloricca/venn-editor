@@ -29,7 +29,7 @@ function VImageCarousel(props) {
                 autoPlay={true}
                 showThumbs={false}
                 infiniteLoop={true}
-                emulateTouch={true}
+                emulateTouch={false}
             >
                 {images}
             </Carousel> 
