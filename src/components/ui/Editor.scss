@@ -1,0 +1,33 @@
+.Editor {
+    overflow-y: scroll;
+    padding-top: 60px;
+
+    label, input, select, button {
+        display: block;
+        margin: 5px 0px;
+        width: 100%;
+    }
+
+    button, .add-new-module {
+        appearance: none;
+        font-size: 1em;
+        padding: 10px 10px;
+        cursor: pointer;
+    }
+
+    input, select {
+        border: 1px solid #bbbbbb;
+        border-radius: 5px;
+        padding: 5px 10px;
+        box-shadow: inset 2px 2px 2px 0px rgb(0 0 0 / 10%);
+    }
+
+    input[type="checkbox"] {
+        width: unset;
+    }
+
+    .ui-columns {
+        display: flex;
+        gap: 10px;
+    }
+}

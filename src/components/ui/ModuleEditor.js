@@ -52,7 +52,7 @@ function ModuleEditor(props) {
     });
 
     return (
-        <div className="ModuleEditor">
+        <div className="ModuleEditor embossy">
             <div className="title" onClick={toggleEditorOpen}>{editorIsOpen ? '–' : '+'} {props.title}</div>
             <div className="remove-btn" onClick={props.onRemove}>+</div>
             {editorIsOpen ? formFields : null}

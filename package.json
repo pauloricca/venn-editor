@@ -15,6 +15,7 @@
     "react-scripts": "4.0.3",
     "react-sortablejs": "^6.0.0",
     "sass": "^1.35.2",
+    "uuid": "^8.3.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

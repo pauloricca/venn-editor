@@ -1,23 +1,14 @@
-import ModuleEditor from '../ui/ModuleEditor';
 import './VImageWithPadding.scss';
 
-function VImageWithPadding(props) {
-
-    const schema = [
-        { "name": "link.type", "label": "Link Type", "type": "select", "options": ["category", "product"], "default": "category" },
-        { "name": "link.payload", "label": "Link Payload", "type": "text", "default": "" },
-        { "name": "padding", "label": "Padding", "type": "number", "default": 0, "min": 0, "max": 100 },
-        { "name": "backgroundColor", "label": "Background Color", "type": "color", "default": {"hex": "#FFFFFF"} },
-        { "name": "imageUrl", "label": "Image URL", "type": "text", "default": "" }
-    ];
+export default function VImageWithPadding(props) {
 
     const atts = props.attributes;
 
-    if(props.mode==="view") return (
+    return (
         <div 
             className='VImageWithPadding'
             style={{
-                'backgroundColor': atts.backgroundColor ? atts.backgroundColor.hex : schema.find(f=>f.name==='backgroundColor').default,
+                'backgroundColor': atts.backgroundColor ? atts.backgroundColor.hex : {'hex': ''},
                 'padding':  atts.padding + 'px'
             }}
         >
@@ -33,8 +24,4 @@ function VImageWithPadding(props) {
             </a>
         </div>
     );
-
-    else return <ModuleEditor title="Image" values={atts} fields={schema} onChange={props.onChange} onRemove={props.onRemove}/>;
 }
-  
-export default VImageWithPadding;

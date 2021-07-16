@@ -5,11 +5,10 @@
     height: 100vh;
     padding: 30px;
 
-    .Viewer {
+    .Viewer, .Editor {
         flex-basis: 0;
         flex-grow: 1;
         max-width: 50%;
-        overflow-y: scroll;
         height: 100%;
     }
 

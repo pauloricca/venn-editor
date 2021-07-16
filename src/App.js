@@ -1,12 +1,17 @@
 import { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import './App.scss';
 import Viewer from './components/ui/Viewer';
+import schemas from './schemas';
+import dummyData from './dummydata';
+import Editor from './components/ui/Editor';
 
 const API_AUTHORISATION_CODE = '2133';
+const USE_DUMMY_DATA = false;
 
 function App() {
 
-  const [viewData, setViewData] = useState([]); //STATICVIEWDATA
+  const [viewData, setViewData] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
 
   function onDataChange(moduleIndex, fieldName, value) {
@@ -35,6 +40,7 @@ function App() {
     setViewData(newData);
   }
 
+  // Save data
   function onSave() {
     fetch('/json', { 
         method: 'POST',
@@ -56,93 +62,54 @@ function App() {
   }
 
   function preProcessData(data) {
-    // TODO: Add ids to each view so we can use them as keys
-
+    // Add ids to be used as keys on lists
+    data.forEach((item) => item.id = uuidv4());
     setViewData(data);
   }
 
   function postProcessData(data) {
-    // TODO: add the image proportions
-
+    // Remove ids
+    data.forEach((item) => delete item.id);
     return data;
   }
 
   // Load Data
   useEffect( () => {
-    if(!dataLoaded) fetch('/json', { 
-        headers: new Headers({
-          'Authorization': API_AUTHORISATION_CODE
-        }) 
-      })
-      .then(res => {
-        if(res.ok) {
-          try {
-            return res.json();
-          } catch(err) {
-            console.log('error parsing api response', err);
+    if(!dataLoaded) {
+      if(USE_DUMMY_DATA) {
+        preProcessData(dummyData); 
+        setDataLoaded(true); 
+      } else {
+        fetch('/json', { 
+          headers: new Headers({
+            'Authorization': API_AUTHORISATION_CODE
+          }) 
+        })
+        .then(res => {
+          if(res.ok) {
+            try {
+              return res.json();
+            } catch(err) {
+              console.log('error parsing api response', err);
+            }
           }
-        }
-      })
-      .then( 
-        jsonRes => { preProcessData(jsonRes); setDataLoaded(true); }
-      );
+        })
+        .then( 
+          jsonRes => { 
+            preProcessData(jsonRes); 
+            setDataLoaded(true); 
+          }
+        );
+      }
+    }
+  }, [dataLoaded]);
 
-  });
-
-  return (
+  if(dataLoaded) return (
     <div className="App">
-      <Viewer views={viewData} onNewData={setViewData} mode="view" />
-      <Viewer views={viewData} onNewData={setViewData} mode="edit" onChange={onDataChange} onAddNew={onAddNew} onRemove={onViewRemove} onSave={onSave}/>
+        <Viewer views={viewData} onNewData={setViewData} mode="view" />
+        <Editor views={viewData} schemas={schemas} onNewData={setViewData} onChange={onDataChange} onAddNew={onAddNew} onRemove={onViewRemove} onSave={onSave}/>
     </div>
-  );
+  ); else return null;
 }
 
 export default App;
-
-/*
-const STATICVIEWDATA = [
-  {
-      "moduleType": "VTextBox",
-      "attributes": {
-          "padding": 14,
-          "backgroundColor": {
-              "hex": "#FF0000"
-          },
-          "bodyText": "20% Discount on all items",
-          "textAlignment": "right",
-          "fontSize": 21,
-          "capitalised": true,
-          "fontColor": {
-              "hex": "#0000FF"
-          }
-      }
-  },
-  {
-      "moduleType": "VImageWithPadding",
-      "attributes": {
-          "padding": 50,
-          "backgroundColor": {
-              "hex": "#00BB00"
-          },
-          "imageUrl": "https://firebasestorage.googleapis.com/v0/b/mulawl.appspot.com/o/c70f0c40-78b4-11ea-9167-f7c4afbaf99b%2F2020-12-21%2Fritz_app2_1500x%402x.gif?alt=media&token=df148b2e-18df-47e8-844f-9755c5aedade",
-          "link": {
-              "payload": "124",
-              "type": "category"
-          }
-      },
-      "heightMultiplier": 1.25
-  },
-  {
-      "moduleType": "VImageCarousel",
-      "attributes": {
-          "padding": 0,
-          "images": [
-              "https://firebasestorage.googleapis.com/v0/b/mulawl.appspot.com/o/c70f0c40-78b4-11ea-9167-f7c4afbaf99b%2F2020-12-21%2Fritz_app2_1500x%402x.gif?alt=media&token=df148b2e-18df-47e8-844f-9755c5aedade",
-              "https://firebasestorage.googleapis.com/v0/b/mulawl.appspot.com/o/c70f0c40-78b4-11ea-9167-f7c4afbaf99b%2F2020-12-21%2Fritz_app2_1500x%402x.gif?alt=media&token=df148b2e-18df-47e8-844f-9755c5aedade",
-              "https://firebasestorage.googleapis.com/v0/b/mulawl.appspot.com/o/c70f0c40-78b4-11ea-9167-f7c4afbaf99b%2F2020-12-21%2Fritz_app2_1500x%402x.gif?alt=media&token=df148b2e-18df-47e8-844f-9755c5aedade"
-          ]
-      },
-      "heightMultiplier": 1.25
-  }
-];
-*/

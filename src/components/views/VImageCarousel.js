@@ -1,13 +1,7 @@
-import ModuleEditor from '../ui/ModuleEditor';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 var Carousel = require('react-responsive-carousel').Carousel;
 
-function VImageCarousel(props) {
-
-    const schema = [
-        { "name": "padding", "label": "Padding", "type": "number", "default": 0, "min": 0, "max": 100 },
-        { "name": "images", "label": "Image URLs", "type": "multitext", "default": [""] }
-    ];
+export default function VImageCarousel(props) {
 
     const atts = props.attributes;
 
@@ -17,7 +11,7 @@ function VImageCarousel(props) {
         </div>
     )) : [];
 
-    if(props.mode==="view") return (
+    return (
         <div 
             className='VImageCarousel'
             style={{
@@ -35,8 +29,4 @@ function VImageCarousel(props) {
             </Carousel> 
         </div>
     );
-
-    else return <ModuleEditor title="Carousel" values={atts} fields={schema} onChange={props.onChange} onRemove={props.onRemove}/>;
 }
-  
-export default VImageCarousel;
