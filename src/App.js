@@ -114,7 +114,7 @@ function App() {
 
   if(dataLoaded) return (
     <div className="App">
-        <Viewer views={viewData} onNewData={setViewData} mode="view" />
+        <Viewer views={viewData} onNewData={setViewData} />
         <Editor views={viewData} schemas={schemas} onNewData={setViewData} onChange={onDataChange} onAddNew={onAddNew} onRemove={onViewRemove} onSave={onSave}/>
     </div>
   ); else return null;

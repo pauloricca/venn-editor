@@ -14,9 +14,9 @@ function Viewer(props) {
                         const onChange = (fieldName, value) => props.onChange(vi, fieldName, value);
                         const onRemove = () => props.onRemove(vi);
                         switch(view.moduleType) {
-                            case 'VTextBox': return <VTextBox key={view.id} attributes={view.attributes} mode={props.mode} onChange={onChange} onRemove={onRemove}/>;
-                            case 'VImageWithPadding': return <VImageWithPadding key={view.id} attributes={view.attributes} mode={props.mode} onChange={onChange} onRemove={onRemove}/>;
-                            case 'VImageCarousel': return <VImageCarousel key={view.id} attributes={view.attributes} mode={props.mode} onChange={onChange} onRemove={onRemove}/>;
+                            case 'VTextBox': return <VTextBox key={view.id} attributes={view.attributes} onChange={onChange} onRemove={onRemove}/>;
+                            case 'VImageWithPadding': return <VImageWithPadding key={view.id} attributes={view.attributes} onChange={onChange} onRemove={onRemove}/>;
+                            case 'VImageCarousel': return <VImageCarousel key={view.id} attributes={view.attributes} onChange={onChange} onRemove={onRemove}/>;
                             default: return null;
                         };
                     })}
