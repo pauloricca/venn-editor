@@ -1,4 +1,4 @@
-function SelectField({props}) {
+function SelectField(props) {
     const options = props.options.map( (option, oi) => <option key={option}>{option}</option> );
     return (
         <select
