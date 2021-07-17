@@ -3,7 +3,7 @@ import './ColorField.scss';
 
 function ColorField(props) {
     return (
-        <div className="ColorField">
+        <div className="ColorField prevent-drag">
             <div
                 className="color-preview"
                 style={{"backgroundColor": props.value.hex}}

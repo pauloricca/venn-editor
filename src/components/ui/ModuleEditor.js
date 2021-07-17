@@ -1,9 +1,9 @@
-import BooleanField from './fields/BooleanField';
-import ColorField from './fields/ColorField';
-import NumberField from './fields/NumberField';
-import SelectField from './fields/SelectField';
-import TextField from './fields/TextField';
-import MultiTextField from './fields/MultiTextField';
+import BooleanField from './fields/BooleanField/BooleanField';
+import ColorField from './fields/ColorField/ColorField';
+import NumberField from './fields/NumberField/NumberField';
+import SelectField from './fields/SelectField/SelectField';
+import TextField from './fields/TextField/TextField';
+import MultiTextField from './fields/MultiTextField/MultiTextField';
 import './ModuleEditor.scss';
 
 function ModuleEditor(props) {

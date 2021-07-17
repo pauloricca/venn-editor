@@ -15,7 +15,7 @@ function Editor(props) {
     return (
         <div className='Editor'>
 
-            <ReactSortable list={props.views} setList={props.onNewData} animation={500} filter={"input, .ColorField"} preventOnFilter={false}>
+            <ReactSortable list={props.views} setList={props.onNewData} animation={500} filter={"input, .prevent-drag"} preventOnFilter={false}>
                 {props.views.map( (view, vi) => {
                     const schema = props.schemas[view.moduleType];
                     return <ModuleEditor 
