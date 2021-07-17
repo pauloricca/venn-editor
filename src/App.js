@@ -121,14 +121,24 @@ function App({useDummyData, useData}) {
             try {
               return res.json();
             } catch(err) {
-              console.log('error parsing api response', err);
+              alert('Error loading data from api. Using dummy data instead');
+              console.log(err);
+              setViewData(preProcessData(dummyData)); 
+              setDataLoaded(true); 
             }
           }
         })
         .then( 
           jsonRes => { 
-            setViewData(preProcessData(jsonRes)); 
-            setDataLoaded(true); 
+            try {
+              setViewData(preProcessData(jsonRes)); 
+              setDataLoaded(true); 
+            } catch(err) {
+              alert('Error reading data from api. Using dummy data instead');
+              console.log(err);
+              setViewData(preProcessData(dummyData)); 
+              setDataLoaded(true); 
+            }
           }
         );
       }

@@ -8,6 +8,9 @@ let appTestId = 'app';
 let editorTestId = 'editor';
 let viewerTestId = 'viewer';
 
+// send alerts to console
+window.alert = (msg) => console.log(msg);
+
 afterEach(() => cleanup);
 
 it("is rendered with viewer and editor, using dummy data", () => {
