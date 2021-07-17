@@ -1,18 +1,23 @@
 function NumberField(props) {
+
+    const onChange = event => props.onChange ? props.onChange( parseFloat(event.target.value)) : '';
+
     return (
         <div>
             <input type="number"
+                data-testid="numberfield"
                 value={props.value} 
-                onChange={event => props.onChange( event.target.value )}
+                onChange={onChange}
                 max={props.max}
                 min={props.min}
             />
             <input 
+                data-testid="numberslider"
                 type="range"  
                 min={props.min}
-                onChange={event => props.onChange( event.target.value )}
+                onChange={onChange}
                 max={props.max}
-                value={props.value} 
+                value={props.value ? props.value : 0} 
                 step="1"
             />
          </div>
