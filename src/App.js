@@ -8,11 +8,17 @@ import './App.scss';
 
 const API_AUTHORISATION_CODE = '2133';
 
-function App({useDummyData}) {
+function App({useDummyData, useData}) {
 
   const [viewData, setViewData] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
   const [selectedViewId, setSelectedViewId] = useState('');
+  
+  // Do we have data coming from props? if so, use it
+  if(!dataLoaded && useData) {
+    setViewData(preProcessData(useData));
+    setDataLoaded(true);
+  }
 
   // when a certain field value changes
   function onDataChange(moduleIndex, fieldName, value) {
@@ -29,17 +35,21 @@ function App({useDummyData}) {
 
   // Removing a view
   function onViewRemove(moduleIndex) {
-    const confirmed = window.confirm("Are you sure you want to remove this element?");
-    if(confirmed) {
-      let newData = [...viewData];
-      newData.splice(moduleIndex, 1);
-      setViewData(newData);
-    }
+    let newData = [...viewData];
+    newData.splice(moduleIndex, 1);
+    setViewData(newData);
   }
 
   // Add new view
   function onAddNew(moduleType) {
-    let newData = [...viewData, {"moduleType": moduleType, "attributes": {}}];
+    let newView = {"moduleType": moduleType, "attributes": {}};
+    // assign new id
+    newView.id = uuidv4();
+    // set defaults
+    schemas[moduleType].fields.forEach(field => {
+      if(field.default) newView.attributes[field.name] = field.default;
+    });
+    const newData = [...viewData, newView];
     setViewData(newData);
   }
 
@@ -129,14 +139,12 @@ function App({useDummyData}) {
     <div className="App" data-testid="app">
         <Viewer 
           views={viewData} 
-          data-testid="viewer"
           onNewData={setViewData} 
           onSelect={onSelectView}
           selectedViewId={selectedViewId}
         />
         <Editor 
           views={viewData} 
-          data-testid="editor"
           schemas={schemas} 
           onNewData={setViewData} 
           onChange={onDataChange} 

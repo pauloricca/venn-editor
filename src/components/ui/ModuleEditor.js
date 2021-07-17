@@ -8,6 +8,11 @@ import './ModuleEditor.scss';
 
 function ModuleEditor(props) {
 
+    function onRemove() {
+        const confirmed = window.confirm("Are you sure you want to remove this element?");
+        if(confirmed) props.onRemove();
+    }
+
     const formFields = props.fields.map( field => {
 
         const splitFieldName = field.name.split('.');
@@ -47,7 +52,7 @@ function ModuleEditor(props) {
     return (
         <div className="ModuleEditor embossy">
             <div className="title" onClick={props.toggleOpen}>{props.isOpen ? '–' : '+'} {props.title}</div>
-            <div className="remove-btn" onClick={props.onRemove}>+</div>
+            <div className="remove-btn" onClick={onRemove}>+</div>
             {props.isOpen ? formFields : null}
         </div>
     );

@@ -13,7 +13,7 @@ function Editor(props) {
     }
 
     return (
-        <div className='Editor'>
+        <div className='Editor' data-testid="editor">
 
             <ReactSortable list={props.views} setList={props.onNewData} animation={500} filter={"input, .prevent-drag"} preventOnFilter={false}>
                 {props.views.map( (view, vi) => {
