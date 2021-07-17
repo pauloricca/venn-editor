@@ -7,9 +7,8 @@ import Editor from './components/ui/Editor';
 import './App.scss';
 
 const API_AUTHORISATION_CODE = '2133';
-const USE_DUMMY_DATA = false;
 
-function App() {
+function App({useDummyData}) {
 
   const [viewData, setViewData] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -98,7 +97,7 @@ function App() {
   // Load Data
   useEffect( () => {
     if(!dataLoaded) {
-      if(USE_DUMMY_DATA) {
+      if(useDummyData) {
         setViewData(preProcessData(dummyData)); 
         setDataLoaded(true); 
       } else {
@@ -124,18 +123,20 @@ function App() {
         );
       }
     }
-  }, [dataLoaded]);
+  }, [dataLoaded,useDummyData]);
 
   if(dataLoaded) return (
-    <div className="App">
+    <div className="App" data-testid="app">
         <Viewer 
           views={viewData} 
+          data-testid="viewer"
           onNewData={setViewData} 
           onSelect={onSelectView}
           selectedViewId={selectedViewId}
         />
         <Editor 
           views={viewData} 
+          data-testid="editor"
           schemas={schemas} 
           onNewData={setViewData} 
           onChange={onDataChange} 
