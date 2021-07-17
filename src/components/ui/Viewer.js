@@ -9,7 +9,7 @@ function Viewer(props) {
     return (
         <div className='Viewer'>
             <div className='view-wrapper'>
-                <ReactSortable list={props.views} setList={props.onNewData}>
+                <ReactSortable list={props.views} setList={props.onNewData} animation={500}>
                     {props.views.map( view => {
                         const onClick = () => props.onSelect(view.id);
                         const containerClass = 'view-container ' + (props.selectedViewId && props.selectedViewId !== view.id ? 'faded' : '');
