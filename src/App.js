@@ -13,6 +13,7 @@ function App() {
 
   const [viewData, setViewData] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
+  const [selectedViewId, setSelectedViewId] = useState('');
 
   // when a certain field value changes
   function onDataChange(moduleIndex, fieldName, value) {
@@ -41,6 +42,10 @@ function App() {
   function onAddNew(moduleType) {
     let newData = [...viewData, {"moduleType": moduleType, "attributes": {}}];
     setViewData(newData);
+  }
+
+  function onSelectView(viewId) {
+    setSelectedViewId(viewId);
   }
 
   // Save data
@@ -123,8 +128,23 @@ function App() {
 
   if(dataLoaded) return (
     <div className="App">
-        <Viewer views={viewData} onNewData={setViewData} />
-        <Editor views={viewData} schemas={schemas} onNewData={setViewData} onChange={onDataChange} onAddNew={onAddNew} onRemove={onViewRemove} onSave={onSave}/>
+        <Viewer 
+          views={viewData} 
+          onNewData={setViewData} 
+          onSelect={onSelectView}
+          selectedViewId={selectedViewId}
+        />
+        <Editor 
+          views={viewData} 
+          schemas={schemas} 
+          onNewData={setViewData} 
+          onChange={onDataChange} 
+          onAddNew={onAddNew} 
+          onRemove={onViewRemove} 
+          onSave={onSave}
+          onSelect={onSelectView}
+          selectedViewId={selectedViewId}
+        />
     </div>
   );
   else return <div className="loading">Loading...</div>;

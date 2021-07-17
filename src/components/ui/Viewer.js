@@ -10,13 +10,13 @@ function Viewer(props) {
         <div className='Viewer'>
             <div className='view-wrapper'>
                 <ReactSortable list={props.views} setList={props.onNewData}>
-                    {props.views.map( (view, vi) => {
-                        const onChange = (fieldName, value) => props.onChange(vi, fieldName, value);
-                        const onRemove = () => props.onRemove(vi);
+                    {props.views.map( view => {
+                        const onClick = () => props.onSelect(view.id);
+                        const containerClass = 'view-container ' + (props.selectedViewId && props.selectedViewId !== view.id ? 'faded' : '');
                         switch(view.moduleType) {
-                            case 'VTextBox': return <VTextBox key={view.id} attributes={view.attributes} onChange={onChange} onRemove={onRemove}/>;
-                            case 'VImageWithPadding': return <VImageWithPadding key={view.id} attributes={view.attributes} onChange={onChange} onRemove={onRemove}/>;
-                            case 'VImageCarousel': return <VImageCarousel key={view.id} attributes={view.attributes} onChange={onChange} onRemove={onRemove}/>;
+                            case 'VTextBox': return <div className={containerClass}><VTextBox key={view.id} attributes={view.attributes} onClick={onClick}/></div>;
+                            case 'VImageWithPadding': return <div className={containerClass}><VImageWithPadding key={view.id} attributes={view.attributes} onClick={onClick}/></div>;
+                            case 'VImageCarousel': return <div className={containerClass}><VImageCarousel key={view.id} attributes={view.attributes}  onClick={onClick}/></div>;
                             default: return null;
                         };
                     })}

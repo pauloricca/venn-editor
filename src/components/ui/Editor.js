@@ -24,7 +24,10 @@ function Editor(props) {
                         values={view.attributes} 
                         fields={schema.fields} 
                         onChange={ (fieldName, value) => props.onChange(vi, fieldName, value) } 
-                        onRemove={ () => props.onRemove(vi) }/>
+                        onRemove={ () => props.onRemove(vi) }
+                        toggleOpen={() => { props.onSelect( view.id !== props.selectedViewId ? view.id : '') }}
+                        isOpen = {props.selectedViewId === view.id}
+                    />;
                 })}
             </ReactSortable>
 

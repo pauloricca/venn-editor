@@ -14,6 +14,7 @@ export default function VImageCarousel(props) {
     return (
         <div 
             className='VImageCarousel'
+            onClick={props.onClick}
             style={{
                 'padding':  atts.padding + 'px'
             }}

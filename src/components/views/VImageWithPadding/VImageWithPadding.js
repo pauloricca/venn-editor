@@ -7,6 +7,7 @@ export default function VImageWithPadding(props) {
     return (
         <div 
             className='VImageWithPadding'
+            onClick={props.onClick}
             style={{
                 'backgroundColor': atts.backgroundColor ? atts.backgroundColor.hex : {'hex': ''},
                 'padding':  atts.padding + 'px'

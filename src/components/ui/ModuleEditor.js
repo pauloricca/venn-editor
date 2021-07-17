@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import BooleanField from './fields/BooleanField';
 import ColorField from './fields/ColorField';
 import NumberField from './fields/NumberField';
@@ -8,12 +7,6 @@ import MultiTextField from './fields/MultiTextField';
 import './ModuleEditor.scss';
 
 function ModuleEditor(props) {
-
-    const [editorIsOpen, setEditorIsOpen] = useState(false);
-
-    function toggleEditorOpen() {
-        setEditorIsOpen(!editorIsOpen);
-    }
 
     const formFields = props.fields.map( field => {
 
@@ -53,9 +46,9 @@ function ModuleEditor(props) {
 
     return (
         <div className="ModuleEditor embossy">
-            <div className="title" onClick={toggleEditorOpen}>{editorIsOpen ? '–' : '+'} {props.title}</div>
+            <div className="title" onClick={props.toggleOpen}>{props.isOpen ? '–' : '+'} {props.title}</div>
             <div className="remove-btn" onClick={props.onRemove}>+</div>
-            {editorIsOpen ? formFields : null}
+            {props.isOpen ? formFields : null}
         </div>
     );
 }

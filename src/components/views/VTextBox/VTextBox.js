@@ -5,6 +5,7 @@ export default function VTextBox(props) {
     return (
         <div
             className='VTextBox'
+            onClick={props.onClick}
             style={{
                 'backgroundColor': atts.backgroundColor ? atts.backgroundColor.hex : {'hex':''},
                 'textAlign': atts.textAlignment,
