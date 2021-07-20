@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import './VImageWithPadding.scss';
 
-export default function VImageWithPadding(props) {
+function VImageWithPadding(props) {
 
     const atts = props.attributes;
 
@@ -26,3 +27,10 @@ export default function VImageWithPadding(props) {
         </div>
     );
 }
+
+VImageWithPadding.propTypes = {
+    attributes: PropTypes.array,
+    onClick: PropTypes.func
+};
+
+export default VImageWithPadding;

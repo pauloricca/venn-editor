@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import VTextBox from "../views/VTextBox/VTextBox";
 import VImageWithPadding from "../views/VImageWithPadding/VImageWithPadding";
 import VImageCarousel from "../views/VImageCarousel/VImageCarousel";
@@ -24,6 +25,13 @@ function Viewer(props) {
             </div>
         </div>
     );
-  }
-  
-  export default Viewer;
+}
+
+Viewer.propTypes = {
+    views: PropTypes.array,
+    onNewData: PropTypes.func,
+    selectedViewId: PropTypes.string,
+    onSelect: PropTypes.func
+};
+
+export default Viewer;

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function NumberField(props) {
 
     const onChange = event => props.onChange ? props.onChange( parseFloat(event.target.value)) : '';
@@ -23,5 +25,10 @@ function NumberField(props) {
          </div>
     );
 }
+
+NumberField.propTypes = {
+    value: PropTypes.string,
+    onChange: PropTypes.func
+};
 
 export default NumberField;

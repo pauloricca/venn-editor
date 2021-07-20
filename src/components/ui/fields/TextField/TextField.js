@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function TextField(props) {
     return (
         <input 
@@ -8,5 +10,10 @@ function TextField(props) {
         />
     );
 }
+
+TextField.propTypes = {
+    value: PropTypes.string,
+    onChange: PropTypes.func
+};
 
 export default TextField;

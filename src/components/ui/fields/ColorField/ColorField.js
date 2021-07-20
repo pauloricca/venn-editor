@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { SketchPicker } from 'react-color'
 import './ColorField.scss';
 
@@ -12,5 +14,10 @@ function ColorField(props) {
         </div>
     );
 }
+
+ColorField.propTypes = {
+    value: PropTypes.object,
+    onChange: PropTypes.func
+};
 
 export default ColorField;

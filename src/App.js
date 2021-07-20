@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import PropTypes from 'prop-types';
 import Viewer from './components/ui/Viewer';
 import schemas from './components/views/Schemas';
 import dummyData from './dummydata';
@@ -168,5 +169,10 @@ function App({useDummyData, useData}) {
   );
   else return <div className="loading">Loading...</div>;
 }
+
+App.propTypes = {
+  seDummyData: PropTypes.bool,
+  useData: PropTypes.array
+};
 
 export default App;

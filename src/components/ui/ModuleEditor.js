@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import BooleanField from './fields/BooleanField/BooleanField';
 import ColorField from './fields/ColorField/ColorField';
 import NumberField from './fields/NumberField/NumberField';
@@ -57,5 +58,15 @@ function ModuleEditor(props) {
         </div>
     );
 }
+
+ModuleEditor.propTypes = {
+    title: PropTypes.string,
+    fields: PropTypes.array,
+    values: PropTypes.array,
+    onRemove: PropTypes.func,
+    onChange: PropTypes.func,
+    isOpen: PropTypes.bool,
+    toggleOpen: PropTypes.func
+};
 
 export default ModuleEditor;

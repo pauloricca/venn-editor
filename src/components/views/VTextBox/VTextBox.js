@@ -1,4 +1,6 @@
-export default function VTextBox(props) {
+import PropTypes from 'prop-types';
+
+function VTextBox(props) {
 
     const atts = props.attributes;
     
@@ -17,3 +19,10 @@ export default function VTextBox(props) {
         >{atts.bodyText}</div>
     );
 }
+
+VTextBox.propTypes = {
+    attributes: PropTypes.array,
+    onClick: PropTypes.func
+};
+
+export default VTextBox;

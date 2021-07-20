@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function SelectField(props) {
     const options = props.options.map( (option, oi) => <option key={option}>{option}</option> );
     return (
@@ -9,5 +11,11 @@ function SelectField(props) {
         </select>
     );
 }
+
+SelectField.propTypes = {
+    value: PropTypes.string,
+    options: PropTypes.array,
+    onChange: PropTypes.func
+};
 
 export default SelectField;

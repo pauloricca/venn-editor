@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 var Carousel = require('react-responsive-carousel').Carousel;
 
-export default function VImageCarousel(props) {
+function VImageCarousel(props) {
 
     const atts = props.attributes;
 
@@ -31,3 +32,10 @@ export default function VImageCarousel(props) {
         </div>
     );
 }
+
+VImageCarousel.propTypes = {
+    attributes: PropTypes.array,
+    onClick: PropTypes.func
+};
+
+export default VImageCarousel;

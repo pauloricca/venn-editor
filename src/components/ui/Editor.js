@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { ReactSortable } from "react-sortablejs";
 import './Editor.scss';
 import ModuleEditor from "./ModuleEditor";
@@ -43,6 +44,17 @@ function Editor(props) {
 
         </div>
     );
-  }
-  
-  export default Editor;
+}
+
+Editor.propTypes = {
+    views: PropTypes.array,
+    onNewData: PropTypes.func,
+    selectedViewId: PropTypes.string,
+    onSelect: PropTypes.func,
+    onChange: PropTypes.func,
+    onRemove: PropTypes.func,
+    onAddNew: PropTypes.func,
+    onSave:PropTypes.func
+};
+
+export default Editor;

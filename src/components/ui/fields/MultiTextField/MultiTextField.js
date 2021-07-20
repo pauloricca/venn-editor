@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function MultiTextField(props) {
 
     let values = [...props.value];
@@ -20,5 +22,10 @@ function MultiTextField(props) {
         />
     ));
 }
+
+MultiTextField.propTypes = {
+    value: PropTypes.array,
+    onChange: PropTypes.func
+};
 
 export default MultiTextField;
