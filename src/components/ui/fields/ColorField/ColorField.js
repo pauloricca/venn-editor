@@ -16,7 +16,9 @@ function ColorField(props) {
 }
 
 ColorField.propTypes = {
-    value: PropTypes.object,
+    value: PropTypes.shape({
+        hex: PropTypes.string,
+    }),
     onChange: PropTypes.func
 };
 
